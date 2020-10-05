@@ -73,10 +73,43 @@ Widget _myListView(BuildContext context) {
   return ListView.builder(
     itemCount: wordList.length,
     itemBuilder: (context, index) {
-      return Card( //                           <-- Card widget
-        child: ListTile(
-          title: Text(wordList[index].fr),
+      return Card(
+        shape: RoundedRectangleBorder(
+          side: BorderSide(color: Colors.blue, width: 1),
+          borderRadius: BorderRadius.circular(5),
         ),
+        child: Column(
+          children: [
+            ListTile(
+              title: new Center(
+                  child: new Text(
+                    wordList[index].fr,
+                    style: new TextStyle(
+                      fontWeight: FontWeight.w500,
+                      fontSize: 25.0
+                      ),
+                  )
+              ),
+            ),
+            const Divider(
+              color: Colors.blue,
+              thickness: 1,
+              indent: 20,
+              endIndent: 20,
+            ),
+            ListTile(
+              title: new Center(
+                  child: new Text(
+                    wordList[index].en,
+                    style: new TextStyle(
+                        fontWeight: FontWeight.w500,
+                        fontSize: 25.0
+                    ),
+                  )
+              ),
+            ),
+          ],
+        )
       );
     },
   );
