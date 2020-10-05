@@ -1,4 +1,6 @@
+import 'package:first_flutter_app/data/word_repository.dart';
 import 'package:first_flutter_app/domain/word.dart';
+import 'package:first_flutter_app/ui/widgets/my_list_widget.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -45,73 +47,21 @@ class _ListPageState extends State<ListPage> {
 }
 
 class ListWidget extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return _myListView(context);
+  List<Word> _words = [];
+
+  Future<List<Word>> _getWords() async {
+    var repo = WordRepositoryImpl();
+    return await repo.words();
   }
-}
 
-// replace this function with the code in the examples
-Widget _myListView(BuildContext context) {
-  var wordList = [
-    Word(id: 1, fr: "écran", en: "screnn"),
-    Word(id: 2, fr: "sable", en: "send"),
-    Word(id: 3, fr: "verre", en: "glass"),
-    Word(id: 4, fr: "terre", en: "dirt"),
-    Word(id: 5, fr: "pierre", en: "stone"),
-    Word(id: 6, fr: "bois", en: "wood"),
-    Word(id: 7, fr: "premier", en: "first"),
-    Word(id: 8, fr: "quatre", en: "four"),
-    Word(id: 9, fr: "cinq", en: "five"),
-    Word(id: 10, fr: "dix", en: "ten"),
-    Word(id: 11, fr: "maison", en: "house"),
-    Word(id: 12, fr: "bus", en: "bus"),
-    Word(id: 13, fr: "frère", en: "brother"),
-    Word(id: 14, fr: "soeur", en: "sister"),
-    Word(id: 15, fr: "voiture", en: "car"),
-  ];
-  return ListView.builder(
-    itemCount: wordList.length,
-    itemBuilder: (context, index) {
-      return Card(
-        shape: RoundedRectangleBorder(
-          side: BorderSide(color: Colors.blue, width: 1),
-          borderRadius: BorderRadius.circular(5),
-        ),
-        child: Column(
-          children: [
-            ListTile(
-              title: new Center(
-                  child: new Text(
-                    wordList[index].fr,
-                    style: new TextStyle(
-                      fontWeight: FontWeight.w500,
-                      fontSize: 25.0
-                      ),
-                  )
-              ),
-            ),
-            const Divider(
-              color: Colors.blue,
-              thickness: 1,
-              indent: 20,
-              endIndent: 20,
-            ),
-            ListTile(
-              title: new Center(
-                  child: new Text(
-                    wordList[index].en,
-                    style: new TextStyle(
-                        fontWeight: FontWeight.w500,
-                        fontSize: 25.0
-                    ),
-                  )
-              ),
-            ),
-          ],
-        )
-      );
-    },
-  );
-
+  @override
+  Widget build(BuildContext context){
+    return new FutureBuilder<List<Word>>(
+      future: _getWords(),
+      initialData: [], // a Future<String> or null
+      builder: (BuildContext context, AsyncSnapshot<List<Word>> snapshot) {
+        return myListWidget(context, snapshot.data);
+      },
+    );
+  }
 }

@@ -1,7 +1,20 @@
+import 'package:first_flutter_app/data/db_provider.dart';
+import 'package:first_flutter_app/data/word_repository.dart';
 import 'package:first_flutter_app/ui/home.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
+import 'package:path/path.dart';
+import 'dart:async';
+import 'package:sqflite/sqflite.dart';
 
-void main() {
+import 'data/data_fake_initializer.dart';
+
+void main() async{
+  DBProvider.db.initDB();
+  DataInitializerImpl.initializer.init();
+  var repo = WordRepositoryImpl();
+  var words = await repo.words();
+  print(words);
   runApp(MyApp());
 }
 
