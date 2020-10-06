@@ -17,7 +17,7 @@ class DBProvider {
     return _database;
   }
 
-  initDB() async {
+  Future<Database> initDB() async {
     WidgetsFlutterBinding.ensureInitialized();
 // Open the database and store the reference.
     final Future<Database> database = openDatabase(
@@ -33,5 +33,6 @@ class DBProvider {
         },
         version: 1
     );
+    return database;
   }
 }
