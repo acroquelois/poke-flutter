@@ -1,5 +1,5 @@
-import 'package:first_flutter_app/data/db_provider.dart';
-import 'package:first_flutter_app/domain/word.dart';
+import 'package:first_flutter_app/data/entities/word.dart';
+import 'package:first_flutter_app/data/localDataSource/db_provider.dart';
 import 'package:sqflite/sqflite.dart';
 
 abstract class WordRepository {

@@ -1,5 +1,5 @@
-import 'package:first_flutter_app/data/word_repository.dart';
-import 'package:first_flutter_app/domain/word.dart';
+import 'package:first_flutter_app/data/entities/word.dart';
+import 'package:first_flutter_app/data/localDataSource/word_repository.dart';
 
 abstract class DataInitializer {
   Future<void> init();

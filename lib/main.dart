@@ -1,5 +1,5 @@
-import 'package:first_flutter_app/data/db_provider.dart';
-import 'package:first_flutter_app/data/word_repository.dart';
+import 'file:///D:/universite/prog-mobile/first_flutter_app/lib/data/localDataSource/db_provider.dart';
+import 'file:///D:/universite/prog-mobile/first_flutter_app/lib/data/localDataSource/word_repository.dart';
 import 'file:///D:/universite/prog-mobile/first_flutter_app/lib/ui/pages/home.dart';
 import 'file:///D:/universite/prog-mobile/first_flutter_app/lib/ui/pages/list_page.dart';
 import 'package:flutter/material.dart';
@@ -8,7 +8,7 @@ import 'package:path/path.dart';
 import 'dart:async';
 import 'package:sqflite/sqflite.dart';
 
-import 'data/data_fake_initializer.dart';
+import 'data/localDataSource/data_fake_initializer.dart';
 
 void main() async{
   DBProvider.db.initDB();

@@ -1,5 +1,5 @@
-import 'package:first_flutter_app/data/word_repository.dart';
-import 'package:first_flutter_app/domain/word.dart';
+import 'package:first_flutter_app/data/entities/word.dart';
+import 'package:first_flutter_app/data/localDataSource/word_repository.dart';
 import 'package:first_flutter_app/ui/widgets/custom_list.dart';
 import 'package:flutter/material.dart';
 
@@ -43,7 +43,13 @@ class ListWidget extends StatelessWidget {
       future: _getWords(),
       initialData: [], // a Future<String> or null
       builder: (BuildContext context, AsyncSnapshot<List<Word>> snapshot) {
-        return CustomList(listWord: snapshot.data ?? []);
+        if(snapshot.connectionState == ConnectionState.done) {
+          if(snapshot.hasData)
+            return CustomList(listWord: snapshot.data);
+          else
+            return CustomList(listWord: []);
+        } else
+          return CircularProgressIndicator();
       },
     );
   }

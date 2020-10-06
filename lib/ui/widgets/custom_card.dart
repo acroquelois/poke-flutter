@@ -1,4 +1,4 @@
-import 'package:first_flutter_app/domain/word.dart';
+import 'package:first_flutter_app/data/entities/word.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
